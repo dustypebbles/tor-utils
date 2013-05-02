@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+from torutils import controller
+from sys import argv
+
+for status in controller.get_network_statuses():
+	flags = ' '.join(status.flags)
+	extra = ' '.join(' '.join(l.split(' ')[1:]) for l in status.get_unrecognized_lines())
+	print '%s %s %s %s:%s %s' % (status.fingerprint, extra, status.nickname, status.address, status.or_port, flags)
+

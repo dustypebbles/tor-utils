@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+from torutils import controller
+from sys import argv
+
+if len(argv) == 1:
+	print 'Usage: %s original replacement [original replacement] ...\n' % argv[0]
+	print controller.get_info('address-mappings/all')
+else:
+	maps = dict(zip(argv[1::2],argv[2::2]))
+	mapped = controller.map_address(maps)
+	for k in mapped:
+		print "MapAddress %s %s" % (k,mapped[k])
+
+
